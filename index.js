@@ -14,7 +14,6 @@ const getBox = (row, column) => document.getElementById(`${row}${column}`);
 let visited = [];
 
 board.addEventListener('mouseout', () => {
-  console.log(visited);
   visited.forEach((box) => box.classList.remove('highlight'));
   visited = [];
 });
@@ -22,27 +21,25 @@ board.addEventListener('mouseout', () => {
 board.addEventListener('mouseover', (event) => {
   if (event.target.id === 'chess_board') return;
 
-  const boxPosition = event.target.id.split('');
-  let row = boxPosition[0];
-  let column = boxPosition[1];
+  const [rowPosition, columnPosition] = event.target.id.split('');
+
+  let row = rowPosition;
+  let column = columnPosition;
 
   const resetRowColumn = () => {
-    row = boxPosition[0];
-    column = boxPosition[1];
+    row = rowPosition;
+    column = columnPosition;
   };
-
+  // current element
   visited.push(getBox(row, column));
 
   while (++row <= 8 && --column >= 1) visited.push(getBox(row, column));
-
   resetRowColumn();
 
   while (--row >= 1 && ++column <= 8) visited.push(getBox(row, column));
-
   resetRowColumn();
 
   while (++row <= 8 && ++column <= 8) visited.push(getBox(row, column));
-
   resetRowColumn();
 
   while (--row >= 1 && --column >= 1) visited.push(getBox(row, column));
