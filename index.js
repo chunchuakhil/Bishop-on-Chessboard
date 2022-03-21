@@ -27,6 +27,7 @@ board.addEventListener('mouseover', (event) => {
     row = boxPosition[0];
     column = boxPosition[1];
   };
+  visited.push(getBox(row, column));
 
   while (++row <= 8 && --column >= 1) visited.push(getBox(row, column));
 
