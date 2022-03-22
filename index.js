@@ -30,18 +30,18 @@ board.addEventListener('mouseover', (event) => {
     row = rowPosition;
     column = columnPosition;
   };
-  // current element
+  // get current element
   visited.push(getBox(row, column));
-
+  // get bottom left boxes
   while (++row <= 8 && --column >= 1) visited.push(getBox(row, column));
   resetRowColumn();
-
+  // get top right boxes
   while (--row >= 1 && ++column <= 8) visited.push(getBox(row, column));
   resetRowColumn();
-
+  // get bottom right boxes
   while (++row <= 8 && ++column <= 8) visited.push(getBox(row, column));
   resetRowColumn();
-
+  // get rop right boxes
   while (--row >= 1 && --column >= 1) visited.push(getBox(row, column));
 
   visited.forEach((box) => box.classList.add('highlight'));
